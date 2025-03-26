@@ -1,0 +1,16 @@
+ErrorDocument 404 /404.html
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^www\.web7\.sallende\.zaragozadinamica\.net [NC]
+RewriteRule ^(.*)$ http://web7.sallende.zaragozadinamica.net/$1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /404.html [L]
